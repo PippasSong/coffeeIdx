@@ -26,10 +26,8 @@
 	        </thead>
 	        <tbody>
 	        	<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
-	        		<td class= cafeName><a th:text="${list.cafeName}"></a></td>
-							<!-- <td th:text="${list.cafeName}"></td> -->
+	        		<td class= "cafeName"><a href="/index/" th:attrappend="href=${list.cafeName}" th:text="${list.cafeName}"></a></td>
 	        		<td th:text="${list.cafeAddress}"></td>
-							<!-- <td class="title"><a href="/board/" th:attrappend="href=${list.boardIdx}" th:text="${list.title}"></a></td> -->
 	        		<td th:text="${list.contactNumber}"></td>
 	        		<td th:text="${list.createdDatetime}"></td>
 	        	</tr>
