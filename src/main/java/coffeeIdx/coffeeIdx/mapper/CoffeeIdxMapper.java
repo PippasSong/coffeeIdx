@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
 
 //마이바티스는 데이터 접근 객체인 DAO를 만드는 것보다 SqlSessionDaoSupport 나 SqlSessionTemplate을 사용하기를 권장
@@ -15,4 +16,5 @@ import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
 @Mapper //마이바티스의 매퍼 인터페이스임을 선언
 public interface CoffeeIdxMapper {
 	List<CoffeeIdxDto> selectCoffeeIdxList() throws Exception; //메서드 이름은 sql쿼리의 이름과 동일해야 한다.
+	CoffeeIdxDto selectCoffeeDetail(String cafeName) throws Exception;
 }

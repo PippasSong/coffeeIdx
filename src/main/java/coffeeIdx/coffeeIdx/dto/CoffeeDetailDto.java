@@ -9,7 +9,9 @@ public class CoffeeDetailDto {
 	private String cafeName;
 	private String cafeAddress;
 	private String contactNumber;
-	private ArrayList<String> menuInfo;
+	//배열 2개 만들어서 하나는 메뉴 하나는 가격, 가격순으로 정렬할때 같이 정렬
+	private ArrayList<String> coffeeInfo;
+	private ArrayList<Integer> priceInfo;
 	private String createdDatetime;
 	private String creatorId;
 	private String updatedDatetime;

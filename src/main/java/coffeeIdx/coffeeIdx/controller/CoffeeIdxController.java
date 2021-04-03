@@ -2,6 +2,7 @@ package coffeeIdx.coffeeIdx.controller;
 
 import java.util.List;
 
+import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
 import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 
@@ -47,9 +48,14 @@ public class CoffeeIdxController {
 	//@pathvariable 은 메서드의 파라미터가 uri의 변수로 사용되는 것을 의미 cafename라는 이름의 파라미터가 {cafename}에 바인드된다 
 	@RequestMapping(value="/index/{cafeName}", method=RequestMethod.GET)
 	public ModelAndView openCoffeeIdxDetail(@PathVariable("cafeName") String cafeName) throws Exception{
-		ModelAndView mv = new ModelAndView("/coffeeIdx/coffeeDetail");
+		ModelAndView mv = new ModelAndView("/coffeeIdx/coffeeDetail");  //뷰 지정
+		
+		CoffeeDetailDto detail = coffeeIdxService.selectCoffeeDetail(cafeName);
+		mv.addObject("detail", detail);
 		
 		return mv;
 	}
+	
+	//사용자의 요청 받아서 원하는 동명 DB에 저장하는 기능
 
 }
