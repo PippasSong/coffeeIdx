@@ -34,8 +34,8 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 	//상세정보를 보여줄 때는 DB에서 coffeeIdxdto상태로 받은 뒤 다른 형식의 dto로 변환 필요(대표메뉴가 연속된 문자열 형식이기 때문)
 	
 	@Override
-	public CoffeeDetailDto selectCoffeeDetail(String cafeName) throws Exception{
-		CoffeeIdxDto coffeeIdxDto = coffeeIdxMapper.selectCoffeeDetail(cafeName);
+	public CoffeeDetailDto selectCoffeeDetail(String cafeName, String cafeAddress) throws Exception{
+		CoffeeIdxDto coffeeIdxDto = coffeeIdxMapper.selectCoffeeDetail(cafeName, cafeAddress);
 		CoffeeDetailDto coffeeDetailDto= new CoffeeDetailDto();
 		
 		//메뉴정보를 가진 문자열
@@ -46,9 +46,12 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 		
 		
 		coffeeDetailDto.setCafeName(coffeeIdxDto.getCafeName());
+		coffeeDetailDto.setCafeAddress(coffeeIdxDto.getCafeAddress());
+		coffeeDetailDto.setContactNumber(coffeeIdxDto.getContactNumber());
 		coffeeDetailDto.setCoffeeInfo(coffeeInfo);
 		coffeeDetailDto.setPriceInfo(priceInfo);
-		
+		coffeeDetailDto.setCreatedDatetime(coffeeIdxDto.getCreatedDatetime());
+		coffeeDetailDto.setCreatorId(coffeeIdxDto.getCreatorId());
 		
 		return coffeeDetailDto;
 	}

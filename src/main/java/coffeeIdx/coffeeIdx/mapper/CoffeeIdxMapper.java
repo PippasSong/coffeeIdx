@@ -3,6 +3,7 @@ package coffeeIdx.coffeeIdx.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
@@ -16,5 +17,5 @@ import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
 @Mapper //마이바티스의 매퍼 인터페이스임을 선언
 public interface CoffeeIdxMapper {
 	List<CoffeeIdxDto> selectCoffeeIdxList() throws Exception; //메서드 이름은 sql쿼리의 이름과 동일해야 한다.
-	CoffeeIdxDto selectCoffeeDetail(String cafeName) throws Exception;
+	CoffeeIdxDto selectCoffeeDetail(@Param("cafeName") String cafeName, @Param("cafeAddress") String cafeAddress) throws Exception;
 }

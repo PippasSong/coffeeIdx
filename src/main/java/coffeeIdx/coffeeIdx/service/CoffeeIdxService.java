@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CoffeeIdxService {
 	List<CoffeeIdxDto> selectCoffeeList() throws Exception;
-	CoffeeDetailDto selectCoffeeDetail(String cafeName) throws Exception;
+	CoffeeDetailDto selectCoffeeDetail(String cafeName, String cafeAddress) throws Exception;
 
 }

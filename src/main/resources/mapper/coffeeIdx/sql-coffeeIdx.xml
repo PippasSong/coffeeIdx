@@ -19,4 +19,22 @@
 				DELETED_YN = 'N'
 		]]>
 	</select>
+
+	<select id="selectCoffeeDetail" parameterType="string" resultType="coffeeIdx.coffeeIdx.dto.CoffeeIdxDto">
+		<![CDATA[
+			SELECT
+				CAFE_NAME,
+				CAFE_ADDRESS,
+				CONTACT_NUMBER,
+				MENU_INFO,
+				to_char(created_datetime, 'YYYY.MM.DD HH24:MI:SS') AS created_datetime,
+				creator_id
+			FROM
+				T_CAFE
+			WHERE
+				DELETED_YN = 'N'
+				AND CAFE_NAME = #{cafeName}
+				AND CAFE_ADDRESS = #{cafeAddress}
+		]]>
+	</select>
 </mapper>

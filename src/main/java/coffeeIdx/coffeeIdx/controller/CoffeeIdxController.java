@@ -50,7 +50,8 @@ public class CoffeeIdxController {
 	public ModelAndView openCoffeeIdxDetail(@PathVariable("cafeName") String cafeName) throws Exception{
 		ModelAndView mv = new ModelAndView("/coffeeIdx/coffeeDetail");  //뷰 지정
 		
-		CoffeeDetailDto detail = coffeeIdxService.selectCoffeeDetail(cafeName);
+		String[] nameAry = cafeName.split("\\*"); //이름과 주소로 구분)
+		CoffeeDetailDto detail = coffeeIdxService.selectCoffeeDetail(nameAry[0], nameAry[1]);
 		mv.addObject("detail", detail);
 		
 		return mv;
