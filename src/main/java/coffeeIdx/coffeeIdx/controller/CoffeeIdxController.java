@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 @Controller //컨트롤러 어노테이션
 public class CoffeeIdxController {
 	//로거 적용
-	private Logger log = LoggerFactory.getLogger(this.getClass());  //로거의 이름에는 보통 클래스 객체를 넘겨준다
+//	private Logger log = LoggerFactory.getLogger(this.getClass());  //로거의 이름에는 보통 클래스 객체를 넘겨준다
 	
 	
 	@Autowired
@@ -35,7 +35,7 @@ public class CoffeeIdxController {
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public ModelAndView openCoffeeIdxList() throws Exception{
 		//debug용의 로그를 출력
-		log.debug("openCoffeeIdxList");
+//		log.debug("openCoffeeIdxList");
 		//뷰
 		ModelAndView mv = new ModelAndView("/coffeeIdx/coffeeList"); //templates 경로
 		

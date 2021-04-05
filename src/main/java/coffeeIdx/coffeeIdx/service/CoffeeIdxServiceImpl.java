@@ -52,6 +52,9 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 		coffeeDetailDto.setPriceInfo(priceInfo);
 		coffeeDetailDto.setCreatedDatetime(coffeeIdxDto.getCreatedDatetime());
 		coffeeDetailDto.setCreatorId(coffeeIdxDto.getCreatorId());
+		coffeeDetailDto.setUpdatedDatetime(coffeeIdxDto.getUpdatedDatetime());
+		coffeeDetailDto.setUpdatorId(coffeeIdxDto.getUpdatorId());
+		coffeeDetailDto.setDeletedYn(coffeeIdxDto.getDeletedYn());
 		
 		return coffeeDetailDto;
 	}

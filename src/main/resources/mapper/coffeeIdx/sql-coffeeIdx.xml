@@ -28,7 +28,11 @@
 				CONTACT_NUMBER,
 				MENU_INFO,
 				to_char(created_datetime, 'YYYY.MM.DD HH24:MI:SS') AS created_datetime,
-				creator_id
+				creator_id,
+				CASE WHEN to_char(UPDATED_DATETIME, 'YYYY.MM.DD HH24:MI:SS') IS NULL THEN to_char(created_datetime, 'YYYY.MM.DD HH24:MI:SS')
+				ELSE to_char(UPDATED_DATETIME, 'YYYY.MM.DD HH24:MI:SS')  END AS UPDATED_DATETIME,
+				UPDATOR_ID,
+				DELETED_YN
 			FROM
 				T_CAFE
 			WHERE
