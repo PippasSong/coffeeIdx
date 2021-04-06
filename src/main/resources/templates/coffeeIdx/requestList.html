@@ -8,10 +8,7 @@
 </head>
 <body>
     <div class="container">
-    	<h2>게시글 목록</h2>
-			<div align="right">
-				<a href="/index/request" class="btn">요청하기</a>
-			</div>
+    	<h2>요청 목록</h2>
     	<table class="board_list">
 	        <colgroup>
 	            <col width="15%"/>
@@ -21,17 +18,13 @@
 	        </colgroup>
 	        <thead>
 	            <tr>
-	                <th scope="col">매장명</th>
-	                <th scope="col">매장 주소</th>
-	                <th scope="col">매장 번호</th>
-	                <th scope="col">최초 작성일</th>
+	                <th scope="col">주소</th>
+	                <th scope="col">요청일</th>
 	            </tr>
 	        </thead>
 	        <tbody>
 	        	<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
-	        		<td class= "cafeName"><a href="/index/" th:attrappend="href=${list.cafeName}+ '*'+ ${list.cafeAddress}" th:text="${list.cafeName}"></a></td>
-	        		<td th:text="${list.cafeAddress}"></td>
-	        		<td th:text="${list.contactNumber}"></td>
+	        		<td th:text="${list.address}"></td>
 	        		<td th:text="${list.createdDatetime}"></td>
 	        	</tr>
 	        	<tr th:unless="${#lists.size(list)} > 0">
@@ -39,6 +32,7 @@
 	        	</tr>
 	        </tbody>
 	    </table>
+	    <!-- <a href="/board/write" class="btn">글 쓰기</a> -->
     </div>
 </body>
 </html>

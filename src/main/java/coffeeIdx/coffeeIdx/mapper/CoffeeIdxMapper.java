@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
+import coffeeIdx.coffeeIdx.dto.RequestDto;
 
 //마이바티스는 데이터 접근 객체인 DAO를 만드는 것보다 SqlSessionDaoSupport 나 SqlSessionTemplate을 사용하기를 권장
 //마이바티스 스프링 연동 모듈은 다른 빈에 직접 주입할 수 있는 매퍼를 생성할 수 있다.
@@ -18,4 +19,6 @@ import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
 public interface CoffeeIdxMapper {
 	List<CoffeeIdxDto> selectCoffeeIdxList() throws Exception; //메서드 이름은 sql쿼리의 이름과 동일해야 한다.
 	CoffeeIdxDto selectCoffeeDetail(@Param("cafeName") String cafeName, @Param("cafeAddress") String cafeAddress) throws Exception;
+	List<RequestDto> selectRequestList() throws Exception;
+	void insertRequest(String address) throws Exception;
 }

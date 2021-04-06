@@ -4,6 +4,7 @@ import java.util.List;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
+import coffeeIdx.coffeeIdx.dto.RequestDto;
 import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +59,20 @@ public class CoffeeIdxController {
 		return mv;
 	}
 	
-	//사용자의 요청 받아서 원하는 동명 DB에 저장하는 기능
+	@RequestMapping(value="/index/request", method=RequestMethod.GET)  //요청 등록화면 요청
+	public ModelAndView openCoffeeIdxRequest() throws Exception{
+		ModelAndView mv = new ModelAndView("/coffeeIdx/requestList");
+		
+		List<RequestDto> list = coffeeIdxService.selectRequestList(); //요청 목록 조회
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/index/request", method=RequestMethod.POST)
+	public String insertCoffeeIdxRequest(String address) throws Exception{
+		coffeeIdxService.insertRequest(address);
+		return "redirect:/index/request";
+	}
 
 }

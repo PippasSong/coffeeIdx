@@ -7,6 +7,7 @@ import java.util.List;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
+import coffeeIdx.coffeeIdx.dto.RequestDto;
 import coffeeIdx.coffeeIdx.mapper.CoffeeIdxMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +96,16 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
             Collections.swap(priceInfo, i, indexOfMin);
         }
     }
+	
+	@Override
+	public List<RequestDto> selectRequestList() throws Exception{
+		return coffeeIdxMapper.selectRequestList();
+	}
+	
+	@Override
+	public void insertRequest(String address) throws Exception{
+		coffeeIdxMapper.insertRequest(address);
+	}
 	
 
 }

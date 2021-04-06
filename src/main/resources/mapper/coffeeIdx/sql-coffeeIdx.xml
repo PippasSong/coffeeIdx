@@ -41,4 +41,16 @@
 				AND CAFE_ADDRESS = #{cafeAddress}
 		]]>
 	</select>
+
+	<select id="selectRequestList" resultType="coffeeIdx.coffeeIdx.dto.RequestDto">
+		<![CDATA[
+			SELECT
+				ADDRESS,
+				TO_CHAR(CREATED_DATETIME, 'YYYY.MM.DD HH24:MI:SS') AS CREATED_DATETIME
+			FROM
+				T_REQUEST
+			WHERE
+				DELETED_YN = 'N'
+		]]>
+	</select>
 </mapper>
