@@ -53,4 +53,19 @@
 				DELETED_YN = 'N'
 		]]>
 	</select>
+
+	<insert id="insertRequest" parameterType="string">
+		<![CDATA[
+			INSERT INTO T_REQUEST(
+				ADDRESS,
+				CREATED_DATETIME,
+				DELETED_YN
+				)
+			VALUES(
+				#{address},
+				SYSDATE,
+				'N'
+				)
+			]]>
+	</insert>
 </mapper>

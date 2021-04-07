@@ -30,9 +30,31 @@
 	        	<tr th:unless="${#lists.size(list)} > 0">
 	        		<td colspan="4">조회된 결과가 없습니다.</td>
 	        	</tr>
+						<form id="frm" name="frm" method="post" action="/index/request">
+				    	<table class="board_detail">
+				    		<tr>
+				    			<td>조회를 원하는 도로명, 동명을 입력해 주세요</td>
+				    			<td><input type="text" id="address" name="address"/></td>
+				    		</tr>
+				    	</table>
+							<a href="#this" id="index" class="btn">목록으로</a>
+							<div align="right">
+				    		<input type="submit" id="submit" value="저장" class="btn">
+							</div>
+				    </form>
 	        </tbody>
 	    </table>
-	    <!-- <a href="/board/write" class="btn">글 쓰기</a> -->
     </div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				$("#index").on("click", function(){
+					location.href = "/index";
+				});
+
+			});
+		</script>
 </body>
 </html>
