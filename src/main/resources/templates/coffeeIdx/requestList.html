@@ -24,7 +24,7 @@
 	        </thead>
 	        <tbody>
 	        	<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
-	        		<td th:text="${list.address}"></td>
+	        		<td name="addressout" th:text="${list.address}"></td>
 	        		<td th:text="${list.createdDatetime}"></td>
 	        	</tr>
 	        	<tr th:unless="${#lists.size(list)} > 0">
@@ -35,12 +35,14 @@
 				    		<tr>
 				    			<td>조회를 원하는 도로명, 동명을 입력해 주세요</td>
 									<!-- 빈값 입력시 경고문 -->
+									<!-- 이미 있는 값을 입력해도 경고문 -->
 				    			<td><input type="text" id="address" name="address"/></td>
 				    		</tr>
 				    	</table>
 							<div align="right">
 								<a href="#this" id="index" class="btn" style="float:left;">목록으로</a>
-				    		<input type="submit" id="submit" value="저장" class="btn">
+				    		<input type="button" id="save" value="저장" class="btn">
+								<!-- <input type="submit" id="submit" value="저장" class="btn"> -->
 							</div>
 				    </form>
 	        </tbody>
@@ -55,7 +57,42 @@
 					location.href = "/index";
 				});
 
+				$("#save").click(function(){
+					if(vali($("#address").val())){
+						alert("값을 입력해 주세요.");
+					} else if(setAry().includes($("#address").val())){
+						alert("이미 존재하는 값입니다.");
+					}else {
+						var frm = $("#frm")[0];
+						setAry();
+						frm.submit();
+					}
+				});
 			});
+
+			// null 체크 함수
+      function vali(value){
+
+          if (value === null) return true;
+          if (!value) return true;
+
+          return false;
+
+      }
+
+			//텍스트 담는 함수
+			function setAry(){
+    			//값들의 갯수 -> 배열 길이를 지정
+					var grpl = $("td[name=addressout]").length;
+					//배열 생성
+					var grparr = new Array(grpl);
+					//배열에 값 주입
+					for(var i=0; i<grpl; i++){
+						grparr[i] = $("td[name=addressout]").eq(i).text();
+			    }
+					return grparr;
+			}
+
 		</script>
 </body>
 </html>
