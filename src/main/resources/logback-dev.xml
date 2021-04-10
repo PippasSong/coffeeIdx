@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration debug="true">
+	<!-- Appenders -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %5p [%c] %m%n</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %5p %m%n</Pattern>
+		</encoder>
+	</appender>
+	<!-- 개발환경의 로그 설정 -->
+	<logger name="coffeeIdx" level="DEBUG" appender-ref="console"/>
+	<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/>
+	<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
+
+
+	<!-- 로거. 로그를 출력하는 요소로 level 속성을 통해서 출력할 로그의 레벨을 조절하여 appender에 전달. 출력하는 형식은 console이라는 이름의 appender를 사용 -->
+	<!-- <logger name="coffeeIdx" level="DEBUG" appender-ref="console"/> -->
+	<!-- log4jdbc설정 -->
+	<!-- <logger name="jdbc" level="OFF"/> -->
+	<!-- SQL을 보여주는 로거 -->
+	<!-- <logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/> -->
+	<!-- SQL의 조회 결과를 테이블로 보여 준다 -->
+	<!-- <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/> -->
+
+	<!-- <logger name="org.springframework" level="error"/> -->
+	<!-- <logger name="org.springframework.jdbc" level="error"/> -->
+
+	<!-- 루트 로거 -->
+    <root level="error">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

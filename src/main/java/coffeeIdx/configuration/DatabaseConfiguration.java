@@ -22,7 +22,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@PropertySource("classpath:/application.properties") //application.properties를 사용할 수 있도록 설정파일 위치 지정
+//@PropertySource("classpath:/application.properties") //application.properties를 사용할 수 있도록 설정파일 위치 지정
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 	
