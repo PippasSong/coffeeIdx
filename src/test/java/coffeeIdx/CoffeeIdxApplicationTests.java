@@ -18,13 +18,13 @@ class CoffeeIdxApplicationTests {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	@Test
-	public void contextLoads() {
-	}
-	
-	@Test
-	public void testSqlSession() throws Exception{
-		System.out.println(sqlSession.toString());
-	}
+//	@Test
+//	public void contextLoads() {
+//	}
+//	
+//	@Test
+//	public void testSqlSession() throws Exception{
+//		System.out.println(sqlSession.toString());
+//	}
 
 }

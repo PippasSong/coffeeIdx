@@ -16,7 +16,7 @@ spring:
   profiles: dev
   cloud:
     config:
-    uri: http://localhost:8888
+    uri: http://34.64.231.171:8888
     name : cloud-config
   datasource:
     hikari:
@@ -33,6 +33,10 @@ spring:
 ---
 spring:
   profiles: production
+  cloud:
+    config:
+    uri: http://34.64.231.171:8888
+    name : cloud-config
   datasource:
     hikari:
       driver-class-name: oracle.jdbc.OracleDriver
