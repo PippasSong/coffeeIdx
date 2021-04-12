@@ -35,8 +35,8 @@
 						<td colspan="3"><input type="text" id="title" name="title" th:value="${board.title }"/></td>
 					</tr> -->
 					<tr>
-						<th colspan="2" scope="row">메뉴</th>
-						<th colspan="2" scope="row">가격</th>
+						<th colspan="2" scope="row" style="text-align:left">메뉴</th>
+						<th colspan="2" scope="row" style="text-align:left">가격</th>
 					</tr>
 					<tr th:if="${#lists.size(detail.coffeeInfo)} > 0" th:each="coffee : ${detail.coffeeInfo}">
 						<td colspan="2" th:text="${coffee}"></td>
