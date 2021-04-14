@@ -38,7 +38,7 @@
 									<!-- 빈값 입력시 경고문 -->
 									<!-- 이미 있는 값을 입력해도 경고문 -->
 				    			<td><input type="text" id="address" name="address"/>
-				    			<input th:if="${session['member'] != null}" type="hidden" id="creatorId" name="creatorId" th:text="${session['member'].id}"/>
+				    			<input th:if="${session['member'] != null}" type="hidden" id="creatorId" name="creatorId" th:value="${session['member'].id}"/>
 				    			</td>
 				    		</tr>
 				    	</table>
