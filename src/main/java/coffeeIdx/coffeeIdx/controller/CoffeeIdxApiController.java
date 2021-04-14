@@ -55,8 +55,8 @@ public class CoffeeIdxApiController {
 	
 	@ApiOperation(value = "요청 등록")
 	@RequestMapping(value="/api/index/request", method=RequestMethod.POST)
-	public String insertCoffeeIdxRequest(@RequestBody String address) throws Exception{
-		coffeeIdxService.insertRequest(address);
+	public String insertCoffeeIdxRequest(@RequestBody String address, String creatorId) throws Exception{
+		coffeeIdxService.insertRequest(address, creatorId);
 		return "redirect:/index/request";
 	}
 }

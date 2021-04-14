@@ -4,26 +4,28 @@ import java.util.List;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
+import coffeeIdx.coffeeIdx.dto.MemberDto;
 import coffeeIdx.coffeeIdx.dto.RequestDto;
 import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
-
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 
 //REST API를 적용 HTTP URI로 리소스를 정의(명사형)하고 HTTP메소드(4가지)로 리소스에 대한 행위를 정의
-
 @Controller //컨트롤러 어노테이션
 public class CoffeeIdxController {
 	//로거 적용
@@ -63,15 +65,20 @@ public class CoffeeIdxController {
 	public ModelAndView openCoffeeIdxRequest() throws Exception{
 		ModelAndView mv = new ModelAndView("/coffeeIdx/requestList");
 		
+		
+		
+		
 		List<RequestDto> list = coffeeIdxService.selectRequestList(); //요청 목록 조회
 		mv.addObject("list", list);
 		
 		return mv;
 	}
 	
+	
 	@RequestMapping(value="/index/request", method=RequestMethod.POST)
-	public String insertCoffeeIdxRequest(String address) throws Exception{
-		coffeeIdxService.insertRequest(address);
+	public String insertCoffeeIdxRequest(String address, String creatorId) throws Exception{
+		System.out.println("----------------"+creatorId+"++++++++++");
+		coffeeIdxService.insertRequest(address, creatorId);
 		return "redirect:/index/request";
 	}
 

@@ -31,18 +31,21 @@
 	        	<tr th:unless="${#lists.size(list)} > 0">
 	        		<td colspan="4">조회된 결과가 없습니다.</td>
 	        	</tr>
-						<form id="frm" name="frm" method="post" action="/index/request">
+					<form id="frm" name="frm" method="post" action="/index/request">
 				    	<table class="board_detail">
 				    		<tr>
 				    			<td>조회를 원하는 도로명, 동명을 입력해 주세요</td>
 									<!-- 빈값 입력시 경고문 -->
 									<!-- 이미 있는 값을 입력해도 경고문 -->
-				    			<td><input type="text" id="address" name="address"/></td>
+				    			<td><input type="text" id="address" name="address"/>
+				    			<input th:if="${session['member'] != null}" type="hidden" id="creatorId" name="creatorId" th:text="${session['member'].id}"/>
+				    			</td>
 				    		</tr>
 				    	</table>
 							<div align="right">
 								<a href="#this" id="index" class="btn" style="float:left;">목록으로</a>
-				    		<input type="button" id="save" value="저장" class="btn">
+							
+				    		<input th:if="${session['member'] != null && session['member'].role == 'general'}" type="button" id="save" value="저장" class="btn">
 								<!-- <input type="submit" id="submit" value="저장" class="btn"> -->
 							</div>
 				    </form>

@@ -59,13 +59,29 @@
 			INSERT INTO T_REQUEST(
 				ADDRESS,
 				CREATED_DATETIME,
-				DELETED_YN
+				DELETED_YN,
+				CREATOR_ID
 				)
 			VALUES(
 				#{address},
 				SYSDATE,
-				'N'
+				'N',
+				#{creatorId}
 				)
 			]]>
 	</insert>
+
+	<select id="getMember" parameterType="coffeeIdx.coffeeIdx.dto.MemberDto" resultType="coffeeIdx.coffeeIdx.dto.MemberDto">
+		<![CDATA[
+			SELECT
+				ID,
+				PASSWORD,
+				NAME,
+				ROLE
+			FROM
+				T_MEMBER
+			WHERE
+				ID = #{id}
+		]]>
+	</select>
 </mapper>

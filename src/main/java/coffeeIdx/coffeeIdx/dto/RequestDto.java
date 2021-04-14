@@ -16,4 +16,7 @@ public class RequestDto {
 	
 	@ApiModelProperty(value = "삭제여부 : Y-삭제, N-삭제되지 않음")
 	private String deletedYn;
+	
+	@ApiModelProperty(value = "id. 최대 10글자")
+	private String creatorId;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
+import coffeeIdx.coffeeIdx.dto.MemberDto;
 import coffeeIdx.coffeeIdx.dto.RequestDto;
 import coffeeIdx.coffeeIdx.mapper.CoffeeIdxMapper;
 
@@ -103,8 +104,14 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 	}
 	
 	@Override
-	public void insertRequest(String address) throws Exception{
-		coffeeIdxMapper.insertRequest(address);
+	public void insertRequest(String address, String creatorId) throws Exception{
+		coffeeIdxMapper.insertRequest(address, creatorId);
+	}
+	
+	@Override
+	public MemberDto getMember(MemberDto member) throws Exception{
+		
+		return coffeeIdxMapper.getMember(member);
 	}
 	
 
