@@ -77,7 +77,6 @@ public class CoffeeIdxController {
 	
 	@RequestMapping(value="/index/request", method=RequestMethod.POST)
 	public String insertCoffeeIdxRequest(String address, String creatorId) throws Exception{
-		System.out.println("----------------"+creatorId+"++++++++++");
 		coffeeIdxService.insertRequest(address, creatorId);
 		return "redirect:/index/request";
 	}

@@ -21,12 +21,14 @@
 	            <tr>
 	                <th scope="col">주소</th>
 	                <th scope="col">요청일</th>
+	                <th scope="col">요청자</th>
 	            </tr>
 	        </thead>
 	        <tbody>
 	        	<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
 	        		<td name="addressout" th:text="${list.address}"></td>
 	        		<td th:text="${list.createdDatetime}"></td>
+	        		<td th:text="${list.creatorId}"></td>
 	        	</tr>
 	        	<tr th:unless="${#lists.size(list)} > 0">
 	        		<td colspan="4">조회된 결과가 없습니다.</td>
