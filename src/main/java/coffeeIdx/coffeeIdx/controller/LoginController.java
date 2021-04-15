@@ -14,7 +14,7 @@ import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SessionAttributes("member") //세션에 상태정보 저장, Model객체 member라는 이름으로 저장된 데이터를 자동으로 세션에 등록
+@SessionAttributes("member") //세션에 상태정보 저장, "member"라는 이름으로 Model에 저장한 데이터는 자동으로 세션에 등록된다
 @Controller
 public class LoginController {
 	
