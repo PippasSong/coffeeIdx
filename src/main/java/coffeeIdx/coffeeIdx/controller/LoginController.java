@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import coffeeIdx.coffeeIdx.dto.MemberDto;
@@ -38,6 +39,14 @@ public class LoginController {
 		} else {
 			return "redirect:/index/login";
 		}
+		
+	}
+	
+	@RequestMapping(value="/index/logout", method=RequestMethod.GET)
+	public String logout(SessionStatus status) throws Exception {
+		status.setComplete(); //세션 강제 종료
+		return "redirect:/index/request";
+		
 		
 	}
 

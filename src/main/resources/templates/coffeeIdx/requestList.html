@@ -8,7 +8,10 @@
 </head>
 <body>
     <div class="container">
-    	<p style="text-align:right"><a href="/index/login">로그인</a></p>
+    	<p style="text-align:right">
+    		<a th:if="${session.member.id != null}" th:href="@{/index/logout}" style="margin:50px;">로그아웃</a>
+    		<a th:if="${session.member.id == null}" href="/index/login">로그인</a>
+    	</p>
     	<h2>요청 목록</h2>
     	<table class="board_list">
 	        <colgroup>
