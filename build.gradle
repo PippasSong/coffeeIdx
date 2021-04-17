@@ -49,6 +49,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     //cloud config client의 역할을 하도록 추가
     implementation 'org.springframework.cloud:spring-cloud-config-server'
+    
+    //스프링부트 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
 }
 
 dependencyManagement {

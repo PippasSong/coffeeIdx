@@ -2,6 +2,7 @@ package coffeeIdx.coffeeIdx.controller;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
 import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
+import coffeeIdx.coffeeIdx.dto.MemberDto;
 import coffeeIdx.coffeeIdx.dto.RequestDto;
 import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 import io.swagger.annotations.Api;
@@ -11,15 +12,18 @@ import io.swagger.annotations.ApiParam;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 
 @Api(description="게시판 REST API")  //컨트롤러에 설명 추가
+@SessionAttributes("member")
 @RestController //@controller와 @responsebody어노테이션을 합친 어노테이션. 응답 결과를 JSON형식으로 만들어 준다
 public class CoffeeIdxApiController {
 	
@@ -55,7 +59,7 @@ public class CoffeeIdxApiController {
 	
 	@ApiOperation(value = "요청 등록")
 	@RequestMapping(value="/api/index/request", method=RequestMethod.POST)
-	public String insertCoffeeIdxRequest(@RequestBody String address, String creatorId) throws Exception{
+	public String insertCoffeeIdxRequest(@ModelAttribute("member") MemberDto member, String address, String creatorId) throws Exception{
 		coffeeIdxService.insertRequest(address, creatorId);
 		return "redirect:/index/request";
 	}

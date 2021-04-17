@@ -84,9 +84,10 @@ public class CoffeeIdxController {
 	//매개변수로 @ModelAttribute를 사용해 세션에 등록된 "member"라는 이름의 객체를 member 변수에 바인딩, 로그인 여부 활용에 사용
 	@RequestMapping(value="/index/request", method=RequestMethod.POST)
 	public String insertCoffeeIdxRequest(@ModelAttribute("member") MemberDto member, String address, String creatorId) throws Exception{
-		if(member.getId() == null) {
-			return "redirect:/index/login";
-		}
+//security 사용으로 비활성화
+//		if(member.getId() == null) {
+//			return "redirect:/index/login";
+//		}
 		coffeeIdxService.insertRequest(address, creatorId);
 		return "redirect:/index/request";
 	}

@@ -30,6 +30,9 @@
 	<!-- <logger name="org.springframework" level="error"/> -->
 	<!-- <logger name="org.springframework.jdbc" level="error"/> -->
 
+	<!-- 시큐리티 로거 -->
+	<logger name="org.springframework.security" level="DEBUG"  appender-ref="console-infolog"/>
+
 	<!-- 루트 로거 -->
     <root level="error">
         <appender-ref ref="console"/>
