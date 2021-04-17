@@ -30,6 +30,11 @@ public class CoffeeIdxApiController {
 	@Autowired
 	CoffeeIdxService coffeeIdxService;
 	
+	@ModelAttribute("member")
+	public MemberDto setMember() {
+		return new MemberDto();
+	}
+	
 	@ApiOperation(value = "카페 목록 조회")
 	@RequestMapping(value="/api/index", method=RequestMethod.GET)
 	public List<CoffeeIdxDto> openCoffeeIdxList() throws Exception{  //결과를 view에 보내지 않고 조회 결과를 바로 api의 응답 결과로 사용
@@ -48,13 +53,12 @@ public class CoffeeIdxApiController {
 	//get은 요청 주소에 파라미터를 같이 보내고 post는 파라미터를 http패킷의 바디에 담아서 전송. @requestbody는 메서드의 파라미터가 반드시 http패킷의 바디에 담겨 있어야 함을 의미.post나 put을 사용하는 메서드에 사용
 	@ApiOperation(value = "요청 등록화면 조회")
 	@RequestMapping(value="/api/index/request", method=RequestMethod.GET)  //요청 등록화면 요청
-	public ModelAndView openCoffeeIdxRequest() throws Exception{
-		ModelAndView mv = new ModelAndView("/coffeeIdx/requestList");
+	public List<RequestDto> openCoffeeIdxRequest() throws Exception{
+	
 		
 		List<RequestDto> list = coffeeIdxService.selectRequestList(); //요청 목록 조회
-		mv.addObject("list", list);
 		
-		return mv;
+		return list;
 	}
 	
 	@ApiOperation(value = "요청 등록")
