@@ -29,18 +29,18 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value="/index/login", method=RequestMethod.POST)
-	public String login(MemberDto member, Model model) throws Exception {
-		MemberDto findMember = coffeeIdxService.getMember(member);
-		
-		if(findMember != null  && findMember.getPassword().equals(member.getPassword())) {
-			model.addAttribute("member", findMember);
-			return "redirect:/index/request";
-		} else {
-			return "redirect:/index/login";
-		}
-		
-	}
+//	@RequestMapping(value="/index/login", method=RequestMethod.POST)
+//	public String login(MemberDto member, Model model) throws Exception {
+//		MemberDto findMember = coffeeIdxService.getMember(member);
+//		
+//		if(findMember != null  && findMember.getPassword().equals(member.getPassword())) {
+//			model.addAttribute("member", findMember);
+//			return "redirect:/index/request";
+//		} else {
+//			return "redirect:/index/login";
+//		}
+//		
+//	}
 	
 	@RequestMapping(value="/index/logout", method=RequestMethod.GET)
 	public String logout(SessionStatus status) throws Exception {
@@ -48,6 +48,12 @@ public class LoginController {
 		return "redirect:/index/request";
 		
 		
+	}
+	
+	@RequestMapping(value="/index/accessDenied", method=RequestMethod.GET)
+	public String accessDenied() throws Exception {
+		return "redirect:/index/accessDenied";
+	
 	}
 
 }

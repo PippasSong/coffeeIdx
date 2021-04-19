@@ -8,8 +8,12 @@
 </head>
 <body>
     <div class="container">
+    <form  action="logout" method="get">
+   				<input type="submit" value="로그아웃"></input>
+   	</form>
     	<p style="text-align:right">
-    		<a th:if="${session.member.id != null}" th:href="@{/index/logout}" style="margin:50px;">로그아웃</a>
+    		<!-- <a th:if="${session.member.id != null}" th:href="@{/index/logout}" style="margin:50px;">로그아웃</a> -->
+				<a th:text="${session.member}" href="/index/login"></a>
     		<a th:if="${session.member.id == null}" href="/index/login">로그인</a>
     	</p>
     	<h2>요청 목록</h2>
