@@ -52,6 +52,7 @@
 				T_REQUEST
 			WHERE
 				DELETED_YN = 'N'
+			ORDER BY CREATED_DATETIME
 		]]>
 	</select>
 
@@ -72,7 +73,7 @@
 			]]>
 	</insert>
 
-	<select id="getMember" parameterType="coffeeIdx.coffeeIdx.dto.MemberDto" resultType="coffeeIdx.coffeeIdx.dto.MemberDto">
+	<select id="getMemberById" parameterType="coffeeIdx.coffeeIdx.dto.MemberDto" resultType="coffeeIdx.coffeeIdx.dto.MemberDto">
 		<![CDATA[
 			SELECT
 				ID,
@@ -85,4 +86,22 @@
 				ID = #{id}
 		]]>
 	</select>
+
+	<insert id="insertMember" parameterType="coffeeIdx.coffeeIdx.dto.MemberDto">
+		<![CDATA[
+			INSERT INTO T_MEMBER(
+				ID,
+				PASSWORD,
+				NAME,
+				ROLE,
+				ENABLED
+				) VALUES (
+				#{id},
+				#{password},
+				#{name},
+				#{role},
+				'1'
+			)
+		]]>
+	</insert>
 </mapper>

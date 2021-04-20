@@ -22,5 +22,6 @@ public interface CoffeeIdxMapper {
 	CoffeeIdxDto selectCoffeeDetail(@Param("cafeName") String cafeName, @Param("cafeAddress") String cafeAddress) throws Exception;
 	List<RequestDto> selectRequestList() throws Exception;
 	void insertRequest(@Param("address")String address, @Param("creatorId")String creatorId) throws Exception;
-	MemberDto getMember(MemberDto member) throws Exception;
+	MemberDto getMemberById(MemberDto member) throws Exception;
+	void insertMember(MemberDto member) throws Exception;
 }

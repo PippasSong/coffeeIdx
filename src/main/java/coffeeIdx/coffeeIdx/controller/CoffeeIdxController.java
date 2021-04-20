@@ -7,8 +7,10 @@ import coffeeIdx.coffeeIdx.dto.CoffeeIdxDto;
 import coffeeIdx.coffeeIdx.dto.MemberDto;
 import coffeeIdx.coffeeIdx.dto.RequestDto;
 import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
+import coffeeIdx.configuration.SecurityUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.Mapping;
@@ -27,16 +29,11 @@ import org.slf4j.LoggerFactory;
 
 
 //REST API를 적용 HTTP URI로 리소스를 정의(명사형)하고 HTTP메소드(4가지)로 리소스에 대한 행위를 정의
-@SessionAttributes("member")
 @Controller //컨트롤러 어노테이션
 public class CoffeeIdxController {
 	//로거 적용
 //	private Logger log = LoggerFactory.getLogger(this.getClass());  //로거의 이름에는 보통 클래스 객체를 넘겨준다
-	
-	@ModelAttribute("member") //setMember 메소드가 리턴한 memberDto객체가 가장 먼저 세션에 등록된다
-	public MemberDto setMember() {
-		return new MemberDto();
-	}
+	SecurityUser securityUser;
 	
 	
 	@Autowired
@@ -69,11 +66,9 @@ public class CoffeeIdxController {
 	}
 	
 	@RequestMapping(value="/index/request", method=RequestMethod.GET)  //요청 등록화면 요청
-	public ModelAndView openCoffeeIdxRequest() throws Exception{
+	public ModelAndView openCoffeeIdxRequest(@AuthenticationPrincipal SecurityUser securityUser) throws Exception{
+		this.securityUser = securityUser;
 		ModelAndView mv = new ModelAndView("/coffeeIdx/requestList");
-		
-		
-		
 		
 		List<RequestDto> list = coffeeIdxService.selectRequestList(); //요청 목록 조회
 		mv.addObject("list", list);
@@ -81,14 +76,10 @@ public class CoffeeIdxController {
 		return mv;
 	}
 	
-	//매개변수로 @ModelAttribute를 사용해 세션에 등록된 "member"라는 이름의 객체를 member 변수에 바인딩, 로그인 여부 활용에 사용
+	//user을 상속한 securityuser을 세션에서 조회한다
 	@RequestMapping(value="/index/request", method=RequestMethod.POST)
-	public String insertCoffeeIdxRequest(@ModelAttribute("member") MemberDto member, String address, String creatorId) throws Exception{
-//security 사용으로 비활성화
-//		if(member.getId() == null) {
-//			return "redirect:/index/login";
-//		}
-		coffeeIdxService.insertRequest(address, creatorId);
+	public String insertCoffeeIdxRequest(String address) throws Exception{
+		coffeeIdxService.insertRequest(address, securityUser.getUsername());
 		return "redirect:/index/request";
 	}
 

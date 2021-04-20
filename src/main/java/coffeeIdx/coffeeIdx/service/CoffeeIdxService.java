@@ -12,6 +12,6 @@ public interface CoffeeIdxService {
 	CoffeeDetailDto selectCoffeeDetail(String cafeName, String cafeAddress) throws Exception;
 	List<RequestDto> selectRequestList() throws Exception;
 	void insertRequest(String address, String creatorId) throws Exception;
-	MemberDto getMember(MemberDto member) throws Exception;
+	MemberDto getMemberById(MemberDto member) throws Exception;
 
 }

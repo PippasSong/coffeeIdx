@@ -109,9 +109,9 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 	}
 	
 	@Override
-	public MemberDto getMember(MemberDto member) throws Exception{
+	public MemberDto getMemberById(MemberDto member) throws Exception{
 		
-		return coffeeIdxMapper.getMember(member);
+		return coffeeIdxMapper.getMemberById(member);
 	}
 	
 

@@ -1,6 +1,7 @@
 package coffeeIdx.coffeeIdx.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import coffeeIdx.coffeeIdx.dto.MemberDto;
+import coffeeIdx.coffeeIdx.mapper.CoffeeIdxMapper;
 import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 
 import org.slf4j.Logger;
@@ -21,6 +23,12 @@ public class LoginController {
 	
 	@Autowired
 	private CoffeeIdxService coffeeIdxService;
+	
+	@Autowired
+	private CoffeeIdxMapper coffeeIdxMapper;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@RequestMapping(value="/index/login", method=RequestMethod.GET)
 	public ModelAndView openLogin() throws Exception {
@@ -50,10 +58,22 @@ public class LoginController {
 		
 	}
 	
+	//시큐리티 권한없음 페이지
 	@RequestMapping(value="/index/accessDenied", method=RequestMethod.GET)
-	public String accessDenied() throws Exception {
-		return "redirect:/index/accessDenied";
+	public void accessDenied() throws Exception {
 	
+	}
+	
+	@RequestMapping(value="/index/insertMember", method=RequestMethod.GET)
+	public String testInsert() throws Exception {
+		MemberDto member = new MemberDto();
+		member.setId("도우너");
+		member.setPassword(encoder.encode("1234"));
+		member.setName("도우너");
+		member.setRole("ROLE_GENERAL");
+		member.setEnabled(true);
+		coffeeIdxMapper.insertMember(member);
+		return "redirect:/index";
 	}
 
 }
