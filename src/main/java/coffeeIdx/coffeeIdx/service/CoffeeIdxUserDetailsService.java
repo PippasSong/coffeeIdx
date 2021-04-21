@@ -35,6 +35,7 @@ public class CoffeeIdxUserDetailsService implements UserDetailsService {
 		
 		try {
 			MemberDto member = coffeeIdxMapper.getMemberById(temp);
+			//UserDetails 타입의 객체 리턴
 			return new SecurityUser(member);
 		} catch (Exception e) {
 			throw new UsernameNotFoundException(username + " 사용자 없음");

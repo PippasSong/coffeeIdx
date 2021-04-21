@@ -65,15 +65,17 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/index/insertMember", method=RequestMethod.GET)
-	public String testInsert() throws Exception {
-		MemberDto member = new MemberDto();
-		member.setId("도우너");
-		member.setPassword(encoder.encode("1234"));
-		member.setName("도우너");
-		member.setRole("ROLE_GENERAL");
-		member.setEnabled(true);
-		coffeeIdxMapper.insertMember(member);
-		return "redirect:/index";
+	public ModelAndView memberInsert() throws Exception {
+//		MemberDto member = new MemberDto();
+//		member.setId("도우너");
+//		member.setPassword(encoder.encode("1234"));
+//		member.setName("도우너");
+//		member.setRole("ROLE_GENERAL");
+//		member.setEnabled(true);
+//		coffeeIdxMapper.insertMember(member);
+		ModelAndView mv = new ModelAndView("/coffeeIdx/signUp");
+		return mv;
+
 	}
 
 }

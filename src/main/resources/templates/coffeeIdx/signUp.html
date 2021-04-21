@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>회원 가입</title>
+	<meta charset="UTF-8">
+	<style>
+	table{padding: 10px;}
+	</style>
+</head>
+
+<body th:align="center">
+<h1>회원 가입</h1>
+<form method="post">
+<table th:align="center" border="5" th:cellpadding="10" th:cellspacing="0" style="border-collapse: separate; border-spacing: 0px 20px;">
+	<tr>
+		<td th:text="아이디"></td>
+		<td style="border-right: hidden;  border-left: hidden;"><input name="id" type="text" size="30">
+			<td  style="text-align:right; border-left: hidden;" size="10">
+				<input type="submit" value="중복 확인">
+			</td>
+
+		</td>
+
+	</tr>
+	<tr>
+		<td th:text="비밀번호"></td>
+		<td colspan="2" style="border-left: hidden;"><input name="password" type="password" size="50"></td>
+	</tr>
+	<tr>
+		<td th:text="이름"></td>
+		<td colspan="2" style="border-left: hidden;"><input name="name" type="text" size="50"></td>
+	</tr>
+	<tr>
+		<td colspan="3" style="text-align:center; border: hidden;">
+			<input type="submit" value="회원가입">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

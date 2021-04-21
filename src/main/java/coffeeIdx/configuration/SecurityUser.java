@@ -12,6 +12,7 @@ public class SecurityUser extends User {
 	private static final long serilVersionUID = 1L;
 	
 	public SecurityUser(MemberDto member) {
+		//부모클래스의 생성자를 불러온다
 		super(member.getId(), member.getPassword(), AuthorityUtils.createAuthorityList(member.getRole().toString()));
 	}
 
