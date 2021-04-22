@@ -22,26 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootTest
 class CoffeeIdxApplicationTests {
 	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	@Autowired
-	private CoffeeIdxMapper coffeeIdxMapper;
-	
-	@Autowired
-	private PasswordEncoder encoder;
-	
-	@Test
-	public void testInsert() throws Exception {
-		MemberDto member = new MemberDto();
-		member.setId("도우너");
-		member.setPassword(encoder.encode("1234"));
-		member.setName("도우너");
-		member.setRole("ROLE_GENERAL");
-		member.setEnabled(true);
-		coffeeIdxMapper.insertMember(member);
-	}
-
 //	@Test
 //	public void contextLoads() {
 //	}
