@@ -60,8 +60,9 @@ public class LoginController {
 	
 	//시큐리티 권한없음 페이지
 	@RequestMapping(value="/index/accessDenied", method=RequestMethod.GET)
-	public void accessDenied() throws Exception {
-	
+	public ModelAndView accessDenied() throws Exception {
+		ModelAndView mv = new ModelAndView("/coffeeIdx/accessDenied");
+		return mv;
 	}
 	
 	@RequestMapping(value="/index/insertMember", method=RequestMethod.GET)
