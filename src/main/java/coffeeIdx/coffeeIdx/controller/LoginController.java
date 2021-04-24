@@ -78,5 +78,19 @@ public class LoginController {
 		return mv;
 
 	}
+	
+	@RequestMapping(value="/index/insertMember", method=RequestMethod.POST)
+	public String memberInsert(String id, String password, String name) throws Exception {
+		MemberDto member = new MemberDto();
+		member.setId(id);
+		member.setPassword(encoder.encode(password));
+		member.setName(name);
+		member.setRole("ROLE_GENERAL");
+		member.setEnabled(true);
+		coffeeIdxMapper.insertMember(member);
+		
+		return "redirect:/index";
+
+	}
 
 }
