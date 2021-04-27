@@ -92,5 +92,15 @@ public class LoginController {
 		return "redirect:/index";
 
 	}
+	
+	@RequestMapping(value="/index/insertMember/idChk", method=RequestMethod.POST)
+	public int idCheck(MemberDto member) throws Exception {
+		int count = coffeeIdxService.idCheck(member);
+		if(count==0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 
 }

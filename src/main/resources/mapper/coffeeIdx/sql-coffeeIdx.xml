@@ -104,4 +104,15 @@
 			)
 		]]>
 	</insert>
+
+	<select id="idCheck" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM
+				T_MEMBER
+			WHERE
+				ID = #{id}
+		]]>
+	</select>
 </mapper>

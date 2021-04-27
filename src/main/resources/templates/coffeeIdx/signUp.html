@@ -7,6 +7,7 @@
 	<style>
 	table{padding: 10px;}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body th:align="center">
@@ -17,7 +18,7 @@
 		<td th:text="아이디"></td>
 		<td style="border-right: hidden;  border-left: hidden;"><input id="id" name="id" type="text" size="30">
 			<td  style="text-align:right; border-left: hidden;" size="10">
-				<input type="submit" value="중복 확인">
+				<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복 확인</button>
 			</td>
 
 		</td>
@@ -38,5 +39,31 @@
 	</tr>
 </table>
 </form>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var idChkVal = $("#idChk").val();
+	})
+
+	function fn_idChk(){
+		$.ajax({
+			url : "/index/insertMember/idChk",
+			type : "post",
+			dataType : "json",
+			data : {"id" : $("#id").val()},
+			success : function(data){
+				if(data == 1){
+					alert("중복된 아이디입니다.");
+				} else if(data == 0){
+					$("#idChk").attr("value", "Y");
+					alert("사용가능한 아이디입니다.");
+				}
+			}
+		})
+	}
+
+</script>
+
 </body>
 </html>

@@ -114,5 +114,10 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 		return coffeeIdxMapper.getMemberById(member);
 	}
 	
+	@Override
+	public int idCheck(MemberDto member) throws Exception{
+		return coffeeIdxMapper.idCheck(member.getId());
+	}
+	
 
 }

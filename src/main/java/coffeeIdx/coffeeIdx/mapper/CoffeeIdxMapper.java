@@ -24,4 +24,5 @@ public interface CoffeeIdxMapper {
 	void insertRequest(@Param("address")String address, @Param("creatorId")String creatorId) throws Exception;
 	MemberDto getMemberById(MemberDto member) throws Exception;
 	void insertMember(MemberDto member) throws Exception;
+	int idCheck(String id) throws Exception;
 }
