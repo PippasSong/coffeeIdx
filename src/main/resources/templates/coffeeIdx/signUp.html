@@ -12,7 +12,7 @@
 
 <body th:align="center">
 <h1>회원 가입</h1>
-<form action="/index/insertMember" method="post">
+<form id="frm" name="frm" action="/index/insertMember" method="post">
 <table th:align="center" border="5" th:cellpadding="10" th:cellspacing="0" style="border-collapse: separate; border-spacing: 0px 20px;">
 	<tr>
 		<td th:text="아이디"></td>
@@ -34,7 +34,7 @@
 	</tr>
 	<tr>
 		<td colspan="3" style="text-align:center; border: hidden;">
-			<input type="submit" value="회원가입">
+			<input  type="submit" id="submit" class="btn" value="회원가입">
 		</td>
 	</tr>
 </table>
@@ -43,7 +43,29 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var idChkVal = $("#idChk").val();
+		$("#submit").on("click", function(){
+			if(vali($("#id").val())){
+				alert("ID를 입력해 주세요.");
+				return false;
+			}
+			if(vali($("#password").val())){
+				alert("패스워드를 입력해 주세요.");
+				return false;
+			}
+			if(vali($("#name").val())){
+				alert("이름을 입력해 주세요.");
+				return false;
+			}
+			var idChkVal = $("#idChk").val();
+			if(idChkVal == "N"){
+				alert("ID 중복확인을 해 주세요.");
+				return false;
+			}else if(idChkVal == "Y"){
+				var frm = $("#frm")[0];
+				alert("회원가입 성공");
+				frm.submit();
+			}
+		});
 	})
 
 	function fn_idChk(){
@@ -61,6 +83,16 @@
 				}
 			}
 		})
+	}
+
+	// null 체크 함수
+	function vali(value){
+
+			if (value === null) return true;
+			if (!value) return true;
+
+			return false;
+
 	}
 
 </script>
