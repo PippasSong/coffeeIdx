@@ -18,7 +18,7 @@
 		<td th:text="아이디"></td>
 		<td style="border-right: hidden;  border-left: hidden;"><input id="id" name="id" type="text" size="30">
 			<td  style="text-align:right; border-left: hidden;" size="10">
-				<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복 확인</button>
+				<button class="idChk" type="button" id="idChk" onclick="fn_idChk();">중복 확인</button>
 			</td>
 
 		</td>
@@ -42,6 +42,8 @@
 
 
 <script type="text/javascript">
+	var idFlag = false;
+
 	$(document).ready(function(){
 		$("#submit").on("click", function(){
 			if(vali($("#id").val())){
@@ -56,11 +58,10 @@
 				alert("이름을 입력해 주세요.");
 				return false;
 			}
-			var idChkVal = $("#idChk").val();
-			if(idChkVal == "N"){
+			if(!idFlag){
 				alert("ID 중복확인을 해 주세요.");
 				return false;
-			}else if(idChkVal == "Y"){
+			}else if(idFlag){
 				var frm = $("#frm")[0];
 				alert("회원가입 성공");
 				frm.submit();
@@ -68,7 +69,16 @@
 		});
 	})
 
+	//아이디를 변경했을 경우
+	$("#id").change(function(){
+		idFlag = false;
+	})
+
 	function fn_idChk(){
+		if(vali($("#id").val())){
+			alert("ID를 입력해 주세요.");
+			return false;
+		}
 		$.ajax({
 			url : "/index/insertMember/idChk",
 			type : "post",
@@ -78,7 +88,7 @@
 				if(data == 1){
 					alert("중복된 아이디입니다.");
 				} else if(data == 0){
-					$("#idChk").attr("value", "Y");
+					idFlag = true;
 					alert("사용가능한 아이디입니다.");
 				}
 			}
