@@ -10,7 +10,10 @@ import coffeeIdx.coffeeIdx.service.CoffeeIdxService;
 import coffeeIdx.configuration.SecurityUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.Mapping;
@@ -72,6 +75,13 @@ public class CoffeeIdxController {
 		
 		List<RequestDto> list = coffeeIdxService.selectRequestList(); //요청 목록 조회
 		mv.addObject("list", list);
+		
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //현재 세션의 사용자 정보 가져오기
+//		User user = (User) authentication.getPrincipal();
+//		String nameGet = user.getUsername();
+		String nameGet = this.securityUser.name;
+		mv.addObject("nameGet", nameGet);
+
 		
 		return mv;
 	}
