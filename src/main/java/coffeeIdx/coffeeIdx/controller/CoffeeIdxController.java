@@ -70,6 +70,7 @@ public class CoffeeIdxController {
 	
 	@RequestMapping(value="/index/request", method=RequestMethod.GET)  //요청 등록화면 요청
 	public ModelAndView openCoffeeIdxRequest(@AuthenticationPrincipal SecurityUser securityUser) throws Exception{
+		//로그인한 사용자 정보
 		this.securityUser = securityUser;
 		ModelAndView mv = new ModelAndView("/coffeeIdx/requestList");
 		
