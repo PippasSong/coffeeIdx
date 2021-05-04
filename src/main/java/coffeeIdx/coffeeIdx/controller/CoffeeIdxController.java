@@ -93,5 +93,22 @@ public class CoffeeIdxController {
 		coffeeIdxService.insertRequest(address, securityUser.getUsername());
 		return "redirect:/index/request";
 	}
+	
+	@RequestMapping(value="/index/requestAdmin", method=RequestMethod.GET)  //요청 등록화면 요청
+	public ModelAndView openCoffeeIdxRequestAdmin(@AuthenticationPrincipal SecurityUser securityUser) throws Exception{
+		//로그인한 사용자 정보
+		this.securityUser = securityUser;
+		ModelAndView mv = new ModelAndView("/coffeeIdx/requestListAdmin");
+		
+		List<RequestDto> list = coffeeIdxService.selectRequestList(); //요청 목록 조회
+		mv.addObject("list", list);
+		
+
+		String nameGet = this.securityUser.name;
+		mv.addObject("nameGet", nameGet);
+
+		
+		return mv;
+	}
 
 }
