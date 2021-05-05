@@ -1,5 +1,6 @@
 package coffeeIdx.coffeeIdx.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import coffeeIdx.coffeeIdx.dto.CoffeeDetailDto;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -94,7 +96,7 @@ public class CoffeeIdxController {
 		return "redirect:/index/request";
 	}
 	
-	@RequestMapping(value="/index/requestAdmin", method=RequestMethod.GET)  //요청 등록화면 요청
+	@RequestMapping(value="/index/requestAdmin", method=RequestMethod.GET)  //관리자 요청 등록화면 요청
 	public ModelAndView openCoffeeIdxRequestAdmin(@AuthenticationPrincipal SecurityUser securityUser) throws Exception{
 		//로그인한 사용자 정보
 		this.securityUser = securityUser;
@@ -109,6 +111,12 @@ public class CoffeeIdxController {
 
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/index/requestAdmin", method=RequestMethod.DELETE)
+	public void deleteCoffeeIdxRequestAdmin(@RequestParam(value = "chkBox[]") List<String> chkAry) {
+		System.out.println(chkAry);		
 	}
 
 }

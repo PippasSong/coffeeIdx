@@ -31,14 +31,15 @@
 	        </thead>
 	        <tbody>
 	        	<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
-							<td><input type="checkbox" name="chkBox" value="N"></td>
+							<td><input type="checkbox"  name="chkBox" class="chkBox" th:value="${list.address}"></td>
 	        		<td name="addressout" th:text="${list.address}"></td>
 	        		<td th:text="${list.createdDatetime}"></td>
 	        		<td th:text="${list.creatorId}"></td>
 	        	</tr>
-	        	<tr th:unless="${#lists.size(list)} > 0">
-	        		<td colspan="4">조회된 결과가 없습니다.</td>
-	        	</tr>
+					<input type="hidden" id="method" name="_method"/>
+        	<tr th:unless="${#lists.size(list)} > 0">
+        		<td colspan="4">조회된 결과가 없습니다.</td>
+        	</tr>
 					<form id="frm" name="frm" action="/index/request" method="post">
 				    	<table class="board_detail">
 				    		<tr>
@@ -51,7 +52,7 @@
 					</form>
 						<div align="right">
 							<a href="#this" id="index" class="btn" style="float:left;">목록으로</a>
-							<input type="submit" id="delete" value="삭제" class="btn">
+							<input type="button" id="delete" value="삭제" class="btn">
 							<input type="submit" id="save" value="저장" class="btn">
 			    		<!-- <input th:if="${session['member'] != null && session['member'].role == 'general'}" type="button" id="save" value="저장" class="btn"> -->
 							<!-- <input type="submit" id="submit" value="저장" class="btn"> -->
@@ -78,6 +79,22 @@
 						// setAry();
 						frm.submit();
 					}
+				});
+
+				$("#delete").click(function(){
+					var chkAry = new Array();
+					$("input[class='chkBox']:checked").each(function(){
+						chkAry.push($(this).attr("value"));
+					});
+
+					$.ajax({
+						url : "/index/requestAdmin",
+						type : "delete",
+						data : {chkBox : chkAry},
+						success : function(){
+							location.href = "/index/requestAdmin";
+						}
+					});
 				});
 			});
 
