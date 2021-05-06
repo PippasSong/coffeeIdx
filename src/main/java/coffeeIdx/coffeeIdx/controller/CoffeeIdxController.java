@@ -115,7 +115,8 @@ public class CoffeeIdxController {
 	
 	@ResponseBody
 	@RequestMapping(value="/index/requestAdmin", method=RequestMethod.DELETE)
-	public void deleteCoffeeIdxRequestAdmin(@RequestParam(value = "chkBox[]") List<String> chkAry) {
+	public void deleteCoffeeIdxRequestAdmin(@RequestParam(value = "chkBox[]") List<String> chkAry) throws Exception {
+		coffeeIdxService.deleteRequestList(chkAry);
 		System.out.println(chkAry);		
 	}
 

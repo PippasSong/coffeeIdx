@@ -115,4 +115,16 @@
 				ID = #{id}
 		]]>
 	</select>
+
+	<update id="deleteRequestList" parameterType="string">
+		<![CDATA[
+			UPDATE
+				T_REQUEST
+			SET
+				deleted_yn = 'Y'
+			WHERE
+				address = #{address}
+		]]>
+	</update>
+
 </mapper>

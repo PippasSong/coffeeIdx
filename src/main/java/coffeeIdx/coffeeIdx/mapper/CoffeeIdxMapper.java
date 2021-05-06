@@ -25,4 +25,5 @@ public interface CoffeeIdxMapper {
 	MemberDto getMemberById(MemberDto member) throws Exception;
 	void insertMember(MemberDto member) throws Exception;
 	int idCheck(String id) throws Exception;
+	void deleteRequestList(String address) throws Exception;
 }

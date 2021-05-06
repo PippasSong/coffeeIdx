@@ -119,5 +119,13 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 		return coffeeIdxMapper.idCheck(member.getId());
 	}
 	
+	@Override
+	public void deleteRequestList(List<String> chkAry) throws Exception {
+		for(String address : chkAry) {
+			coffeeIdxMapper.deleteRequestList(address);
+		}
+		
+	}
+	
 
 }
