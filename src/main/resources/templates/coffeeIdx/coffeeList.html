@@ -5,11 +5,16 @@
 	<meta charset="UTF-8">
 	<title>index</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
     	<h2>게시글 목록</h2>
-			<div align="right">
+			<div style="display: inline; float: left;">
+				<input type="text" id="roadname" name="roadname"/>
+				<button id="search" class="btn" style="height:22px;  font-size:12px">검색</button>
+			</div>
+			<div style="display: inline; float: right;">
 				<a href="/index/request" class="btn">요청하기</a>
 				<a href="/index/insertMember" class="btn">회원가입</a>
 				<a href="/index/requestAdmin" class="btn">페이지 관리</a>
@@ -42,5 +47,16 @@
 	        </tbody>
 	    </table>
     </div>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#search").on("click", function(){
+			var roadName = document.getElementById('roadname').value;
+			location.href = "/index/" + roadName;
+		});
+
+
+	});
+</script>
 </body>
 </html>
