@@ -127,4 +127,18 @@
 		]]>
 	</update>
 
+	<select id="roadSearch" parameterType="string" resultType="coffeeIdx.coffeeIdx.dto.CoffeeIdxDto">
+		<![CDATA[
+			SELECT
+				CAFE_NAME,
+				CAFE_ADDRESS,
+				CONTACT_NUMBER,
+				to_char(created_datetime, 'YYYY.MM.DD HH24:MI:SS') AS created_datetime
+			FROM
+				T_CAFE
+			WHERE
+				DELETED_YN = 'N' AND CAFE_ADDRESS LIKE '%'||#{roadName}||'%'
+		]]>
+	</select>
+
 </mapper>

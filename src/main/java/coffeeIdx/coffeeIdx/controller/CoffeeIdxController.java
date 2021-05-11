@@ -119,5 +119,13 @@ public class CoffeeIdxController {
 		coffeeIdxService.deleteRequestList(chkAry);
 		System.out.println(chkAry);		
 	}
+	
+	@RequestMapping(value="/index/roadSearch/{roadName}", method=RequestMethod.GET)
+	public ModelAndView roadSearch(@PathVariable("roadName") String roadName) throws Exception{
+ModelAndView mv = new ModelAndView("/coffeeIdx/coffeeList"); //templates 경로
+		List<CoffeeIdxDto> list = coffeeIdxService.roadSearch(roadName); //게시글 목록 조회
+		mv.addObject("list", list);
+		return mv;
+	}
 
 }

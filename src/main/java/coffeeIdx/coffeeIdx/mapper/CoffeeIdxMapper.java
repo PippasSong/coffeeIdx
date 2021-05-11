@@ -26,4 +26,5 @@ public interface CoffeeIdxMapper {
 	void insertMember(MemberDto member) throws Exception;
 	int idCheck(String id) throws Exception;
 	void deleteRequestList(String address) throws Exception;
+	List<CoffeeIdxDto> roadSearch(@Param("roadName")String roadName) throws Exception;
 }

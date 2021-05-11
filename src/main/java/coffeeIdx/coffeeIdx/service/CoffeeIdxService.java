@@ -15,5 +15,6 @@ public interface CoffeeIdxService {
 	MemberDto getMemberById(MemberDto member) throws Exception;
 	int idCheck(MemberDto member) throws Exception;
 	void deleteRequestList(List<String> chkAry) throws Exception;
+	List<CoffeeIdxDto> roadSearch(String roadName) throws Exception;
 
 }

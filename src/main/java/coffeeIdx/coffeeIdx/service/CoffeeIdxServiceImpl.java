@@ -127,5 +127,10 @@ public class CoffeeIdxServiceImpl implements CoffeeIdxService {
 		
 	}
 	
+	@Override
+	public List<CoffeeIdxDto> roadSearch(String roadName) throws Exception{
+		return coffeeIdxMapper.roadSearch(roadName);
+	}
+	
 
 }
