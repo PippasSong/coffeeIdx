@@ -6,6 +6,27 @@
 	<title>index</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+			.off-screen {
+			display: none;
+		}
+		#nav {
+			text-align: center;
+		}
+		#nav a {
+			display: inline-block;
+			padding: 3px 5px;
+			margin-right: 10px;
+			font-family:Tahoma;
+			background: #ccc;
+			color: #000;
+			text-decoration: none;
+		}
+		#nav a.active {
+			background: #333;
+			color: #fff;
+		}
+	</style>
 </head>
 <body>
     <div class="container">
@@ -57,6 +78,64 @@
 
 
 	});
+
+	var $boardTable = $('.board_list');
+
+	$boardTable.after('<div id="nav">');
+
+	//표시할 게시물 수
+	var rowPerPage = 10;
+	var $tr = $(".board_list").find("tbody tr");
+	var rowTotals = $tr.length;
+
+
+	//총 페이지의  수
+	var pageTotal = Math.ceil(rowTotals / rowPerPage);
+	var i = 0;
+
+	for (; i < pageTotal; i++) {
+		$('<a href="#"></a>')
+				.attr('rel', i) //rel이라는 속성에 i 값을 대입
+				.html(i + 1) //값 설정
+				.appendTo('#nav'); //name이 nav인 곳에 대입
+	}
+
+	$tr.addClass('off-screen')
+			.slice(0, rowPerPage)
+			.removeClass('off-screen'); //첫 페이지에는 0~rowPerPage까지 표시
+
+	var $pagingLink = $('#nav a');
+	$pagingLink.on('click', function (evt) {
+		evt.preventDefault(); //하이퍼링크의 동작을 중단시킨다(href="#"로 설정되어 있다.)
+		var $this = $(this);
+		//이미 선택한 경우
+		if ($this.hasClass('active')) {
+			return;
+		}
+		$pagingLink.removeClass('active');
+		$this.addClass('active');
+		// 0 => 0(0*4), 4(0*4+4)
+		// 1 => 4(1*4), 8(1*4+4)
+		// 2 => 8(2*4), 12(2*4+4)
+		// 시작 행 = 페이지 번호 * 페이지당 행수
+		// 끝 행 = 시작 행 + 페이지당 행수
+
+		var currPage = $this.attr('rel');
+		var startItem = currPage * rowPerPage;
+		var endItem = startItem + rowPerPage;
+
+		$tr.css('opacity', '0.0')
+				.addClass('off-screen')
+				.slice(startItem, endItem) //이만큼만 표시
+				.removeClass('off-screen')
+				.animate({opacity: 1}, 300);
+
+	});
+
+	$pagingLink.filter(':first').addClass('active'); //:first 필터셀렉터. 첫번째로 위치한 요소를 가져온다.
+
+
+
 </script>
 </body>
 </html>
