@@ -72,12 +72,27 @@
 
 	$(document).ready(function(){
 		$("#search").on("click", function(){
-			var roadName = document.getElementById('roadname').value;
-			location.href = "/index/roadSearch/" + roadName;
+			if(vali($("#roadname").val())){
+				alert("값을 입력해 주세요.");
+			} else {
+				var roadName = document.getElementById('roadname').value;
+				location.href = "/index/roadSearch/" + roadName;
+			}
+
 		});
 
 
 	});
+
+	// null 체크 함수
+	function vali(value){
+
+			if (value === null) return true;
+			if (!value) return true;
+
+			return false;
+
+	}
 
 	var $boardTable = $('.board_list');
 
